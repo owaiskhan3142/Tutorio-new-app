@@ -3,10 +3,10 @@ import { View, StyleSheet, Text, TextInput, SafeAreaView, Button, TouchableHighl
 
 // const fetch = require('node-fetch');
 
-const Login = () => {
+const Login = ({navigation}) => {
     const [jsonData, setJsonData] = React.useState(null);
-    const [username, setUsername] = React.useState(null);
-    const [password, setPassword] = React.useState(null);
+    const [username, setUsername] = React.useState('owais');
+    const [password, setPassword] = React.useState('owais');
     url = "https://api.open-meteo.com/v1/forecast?latitude=24.83&longitude=67.08&current_weather=true";
     const getData = async () => {
         try {
@@ -27,19 +27,18 @@ const Login = () => {
         console.log("Submitted");
         console.log(username);
         console.log(password);
+        navigation.navigate('Home')
  }
- const handelChange = (e) => {
-    
- }
+ 
 
     return (
         <SafeAreaView style={styles.container}>
             
                 <Text style={styles.header}>Temperature Today is {jsonData}° Celcius</Text>
                 <Text style={{color: 'white'}}>Login</Text>
-                <TextInput style={styles.input} placeholder='Enter your Username' ></TextInput>
-                <Text style={{color: 'white'}} onChangeText={(e) => {setUsername(e.target.value)}}>Password</Text>
-                <TextInput style={styles.input} placeholder='Enter Password' onChangeText={(e) => setPassword(e.target.value) }></TextInput>
+                <TextInput style={styles.input} placeholder='Enter your Username'></TextInput>
+                <Text style={{color: 'white'}}>Password</Text>
+                <TextInput style={styles.input} placeholder='Enter Password'></TextInput>
                 <Button style={{borderRadius: '10', marginTop:'100px'}} title="Press Me" onPress={handleSubmit}></Button>
                 
 
