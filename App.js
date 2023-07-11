@@ -4,6 +4,7 @@ import Login from './screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
 import Home from './screens/Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import CourseDesc from './screens/CourseDesc';
 
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       <stack.Navigator initialRouteName= "Login"> 
       <stack.Screen name="Login" component={Login} />
       <stack.Screen name="Home" component={Home} />
+      <stack.Screen name="CourseDesc" component={CourseDesc} />
       </stack.Navigator>
     </NavigationContainer>
   );

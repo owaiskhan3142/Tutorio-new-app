@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Text, TextInput, SafeAreaView, Button, TouchableHighlight } from 'react-native';
 
@@ -32,18 +33,18 @@ const Login = ({navigation}) => {
  
 
     return (
-        <SafeAreaView style={styles.container}>
-            
+        <View style={styles.container}>
+            <StatusBar style="auto" />
                 <Text style={styles.header}>Temperature Today is {jsonData}° Celcius</Text>
                 <Text style={{color: 'white'}}>Login</Text>
                 <TextInput style={styles.input} placeholder='Enter your Username'></TextInput>
                 <Text style={{color: 'white'}}>Password</Text>
                 <TextInput style={styles.input} placeholder='Enter Password'></TextInput>
-                <Button style={{borderRadius: '10', marginTop:'100px'}} title="Press Me" onPress={handleSubmit}></Button>
+                <Button style={{borderRadius: '10', marginTop:'100px'}} title="Press Me" onPress={handleSubmit} name={username}></Button>
                 
 
             
-        </SafeAreaView>
+        </View>
     );
 }
 
