@@ -3,12 +3,9 @@ import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 
 
-const Home = ({navigation}) => {
-  const handleSubmit = () => {
-    console.log("Submitted");
-    navigation.navigate('CourseDesc', {
-      courseObj: courses,
-    })
+const Home = ({ navigation }) => {
+  const handleSubmit = (course) => () => {
+    navigation.navigate('CourseDesc', { courseObj: course })
   }
   courses = [
     {
@@ -32,7 +29,6 @@ const Home = ({navigation}) => {
       courseImage: 'https://picsum.photos/200/300',
       courseDescription: 'This is course 3',
       coursePrice: '3000',
-
     },
     {
       id: '4',
@@ -43,23 +39,22 @@ const Home = ({navigation}) => {
 
     }
   ];
-  const Item = ({ title, description, image }) => (
-    <TouchableOpacity style={styles.courseTile} onPress={handleSubmit} >
-      <Image style={styles.courseImage} source={{ uri: image }} />
-      <Text style={styles.courseTitle}>{title}</Text>
-      <Text>{description}</Text>
-    </TouchableOpacity>
-  );
+  const Item = ({ course }) => {
+    console.log('Course =>', course);
+    return (
+      <TouchableOpacity style={styles.courseTile} onPress={handleSubmit(course)} >
+        <Image style={styles.courseImage} source={{ uri: course.courseImage }} />
+        <Text style={styles.courseTitle}>{course.courseName}</Text>
+        <Text>{course.courseDescription}</Text>
+      </TouchableOpacity>
+    )
+  };
   return (
     <SafeAreaView style="mainContainer">
       <StatusBar style="auto" />
-      <View>
-        <Text>Slider here</Text>
-      </View>
       <FlatList data={courses}
-        renderItem={({ item }) => <Item title={item.courseName} description={item.courseDescription} image={item.courseImage} />}
+        renderItem={({ item }) => <Item course={item} />}
         keyExtractor={item => item.id} />
-
     </SafeAreaView>
   )
 }
@@ -76,7 +71,6 @@ const styles = StyleSheet.create({
   courseTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-
   },
   courseTile: {
     padding: 40,
