@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './screens/Home';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CourseDesc from './screens/CourseDesc';
+import Signup from './screens/Signup';
 
 
 export default function App() {
@@ -13,14 +14,13 @@ export default function App() {
     <NavigationContainer>
       <stack.Navigator initialRouteName="Login"
         screenOptions={{
-          headerStyle: {
-            backgroundColor: '#fa8072',
-          },
+          headerShown: false,
           headerTintColor: "black"
         }}>
         <stack.Screen name="Login" component={Login} options={{ title: '  ' }} />
         <stack.Screen name="Home" component={Home} options={{ title: 'Home' }} />
         <stack.Screen name="CourseDesc" component={CourseDesc} options={{ title: 'Course' }} />
+        <stack.Screen name="Signup" component={Signup} options={{ title: 'Signup' }} />
       </stack.Navigator>
     </NavigationContainer>
   );

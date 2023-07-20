@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import {
     useFonts,
@@ -7,7 +6,7 @@ import {
     OpenSans_400Regular,
     ChelaOne_400Regular,
 } from "@expo-google-fonts/dev";
-import { View, StyleSheet, Text, TextInput, SafeAreaView, Button, ImageBackground, TouchableHighlight, Image } from 'react-native';
+import { View, StyleSheet, Text, TextInput, SafeAreaView, Button, ImageBackground, KeyboardAvoidingView, TouchableHighlight, Image, StatusBar, TouchableOpacity } from 'react-native';
 
 // const fetch = require('node-fetch');
 
@@ -34,29 +33,47 @@ const Login = ({ navigation }) => {
 
     const handleSubmit = () => {
         console.log(username, password)
-        navigation.navigate('Home', { username: username })
+        navigation.navigate('Home', {
+            username: username
+        })
     }
 
 
     return (
-        <View style={styles.container}>
-            <ImageBackground source={image} style={styles.image}>
-                <StatusBar style="auto" />
-                <Text style={styles.header}>Temperature Today is {jsonData}° Celcius</Text>
-                <Text style={styles.header}>Tutorio</Text>
+
+        <KeyboardAvoidingView style={styles.container}>
+            <StatusBar animated={false}
+                backgroundColor="black"
+                barStyle={'light-content'}
+                hidden={false} />
+
+
+            <ImageBackground source={image} style={styles.image} blurRadius={2}>
+                <View style={{ display: 'flex', justifyContent: 'center', }}>
+                    <Text style={styles.title}>TUTORIO</Text>
+
+                </View>
                 <View style={styles.loginContainer}>
-                    <Text style={{ color: 'white' }}>Login</Text>
-                    <TextInput style={styles.input} placeholder='Enter your Username' onChangeText={(username) => {
+                    <Text style={{ color: 'white' }}>Login </Text>
+                    <TextInput style={styles.input} placeholder='Enter your Username' placeholderTextColor="white" onChangeText={(username) => {
                         setUsername(username);
                     }}></TextInput>
                     <Text style={{ color: 'white' }}>Password</Text>
-                    <TextInput style={styles.input} placeholder='Enter Password' onChangeText={(password) => {
+                    <TextInput style={styles.input} placeholder='Enter Password' placeholderTextColor="white" onChangeText={(password) => {
                         setPassword(password);
                     }}></TextInput>
-                    <Button style={{ borderRadius: '10', marginTop: '100px' }} title="Press Me" onPress={handleSubmit}></Button>
+                    <Button style={styles.button} title="Press Me" onPress={handleSubmit}></Button>
                 </View>
-            </ImageBackground>
-        </View>
+                <View style={styles.footer}>
+                    <Text style={{ color: 'white' }}>Not a member?</Text>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Signup')
+                    }}><Text style={{ color: 'white' }}>Signup here</Text></TouchableOpacity>
+                </View>
+
+            </ImageBackground >
+        </KeyboardAvoidingView>
+
     );
 }
 
@@ -68,6 +85,26 @@ const styles = StyleSheet.create({
         display: 'flex',
         width: '100%',
     },
+    title: {
+        // fontFamily: 'Chela One',
+        fontSize: 40,
+        fontWeight: 'bold',
+        color: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        top: 200,
+
+    },
+    button: {
+        width: '100%',
+        height: 50,
+        backgroundColor: 'red',
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        top: 20,
+    },
     image: {
         width: '100%',
         flex: 1,
@@ -78,7 +115,10 @@ const styles = StyleSheet.create({
         margin: 10,
         width: 200,
         borderRadius: 10,
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(0,0,0,0)',
+        borderBottomColor: 'white',
+        color: 'white',
+        borderColor: 'white',
     },
     header: {
         width: '100%',
@@ -97,9 +137,20 @@ const styles = StyleSheet.create({
     },
     loginContainer: {
         alignItems: 'center',
-        top: '40%',
+        top: 300,
         padding: 10,
         padding: 50,
+        width: '70%',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        left: '15%',
+        borderRadius: 10,
+    },
+    footer: {
+        top: 400,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        color: 'white',
     }
 })
 

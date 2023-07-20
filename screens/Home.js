@@ -1,6 +1,5 @@
-import { View, Text, SafeAreaView, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, FlatList, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native'
 import React from 'react'
-import { StatusBar } from 'expo-status-bar'
 
 
 const Home = ({ navigation }) => {
@@ -10,7 +9,7 @@ const Home = ({ navigation }) => {
   courses = [
     {
       id: '1',
-      courseName: 'Course 1',
+      courseName: 'C++',
       courseImage: 'https://picsum.photos/200/300',
       courseDescription: 'This is course 1',
       coursePrice: '1000',
@@ -18,21 +17,21 @@ const Home = ({ navigation }) => {
     },
     {
       id: '2',
-      courseName: 'Course 2',
+      courseName: 'English',
       courseImage: 'https://picsum.photos/200/300',
       courseDescription: 'This is course 2',
       coursePrice: '2000',
     },
     {
       id: '3',
-      courseName: 'Course 3',
+      courseName: 'Urdu',
       courseImage: 'https://picsum.photos/200/300',
       courseDescription: 'This is course 3',
       coursePrice: '3000',
     },
     {
       id: '4',
-      courseName: 'Course 4',
+      courseName: 'Python',
       courseImage: 'https://picsum.photos/200/300',
       courseDescription: 'This is course 4',
       coursePrice: '4000',
@@ -51,10 +50,18 @@ const Home = ({ navigation }) => {
   };
   return (
     <SafeAreaView style="mainContainer">
-      <StatusBar style="auto" />
-      <FlatList data={courses}
-        renderItem={({ item }) => <Item course={item} />}
-        keyExtractor={item => item.id} />
+      <StatusBar animated={false}
+        backgroundColor="black"
+        barStyle={'light-content'}
+        hidden={false} />
+      <View>
+        <Text>Home</Text>
+      </View>
+      <View style={styles.main}>
+        <FlatList data={courses}
+          renderItem={({ item }) => <Item course={item} />}
+          keyExtractor={item => item.id} />
+      </View>
     </SafeAreaView>
   )
 }
@@ -75,6 +82,13 @@ const styles = StyleSheet.create({
   courseTile: {
     padding: 40,
     border: '1px solid black',
+  },
+  main: {
+    top: 300,
+    backgroundColor: 'green',
+    borderTopRightRadius: 70,
+    borderTopLeftRadius: 70,
+    // border: '10px solid black',
   }
 })
 
