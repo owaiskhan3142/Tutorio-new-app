@@ -1,8 +1,12 @@
 import { View, Text, SafeAreaView, FlatList, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native'
 import React from 'react'
+// import { useSharedValue, useAnimatedStyle } from 'react-native-reanimated'
+
 
 
 const Home = ({ navigation }) => {
+
+  // const progress = useSharedValue(0)
   const handleSubmit = (course) => () => {
     navigation.navigate('CourseDesc', { courseObj: course })
   }
@@ -13,7 +17,6 @@ const Home = ({ navigation }) => {
       courseImage: 'https://picsum.photos/200/300',
       courseDescription: 'This is course 1',
       coursePrice: '1000',
-
     },
     {
       id: '2',
@@ -36,10 +39,24 @@ const Home = ({ navigation }) => {
       courseDescription: 'This is course 4',
       coursePrice: '4000',
 
+    },
+    {
+      id: '5',
+      courseName: 'Java',
+      courseImage: 'https://picsum.photos/200/300',
+      courseDescription: 'This is course 5',
+      coursePrice: '5000',
+
+    },
+    {
+      id: '6',
+      courseName: 'JavaScript',
+      courseImage: 'https://picsum.photos/200/300',
+      courseDescription: 'This is course 6',
+      coursePrice: '6000',
     }
   ];
   const Item = ({ course }) => {
-    console.log('Course =>', course);
     return (
       <TouchableOpacity style={styles.courseTile} onPress={handleSubmit(course)} >
         <Image style={styles.courseImage} source={{ uri: course.courseImage }} />

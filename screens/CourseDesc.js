@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
 const CourseDesc = ({ route }) => {
     const { courseObj } = route.params
@@ -13,10 +14,10 @@ const CourseDesc = ({ route }) => {
             <View style={styles.header}>
                 <Image style={styles.courseImage} source={{ uri: courseObj.courseImage }}></Image>
             </View>
-            <View style={styles.footer}>
+            <Animatable.View animation="fadeInUp" style={styles.footer}>
                 <Text style={styles.heading}>{courseObj.courseName}</Text>
                 <Text>{courseObj.courseDescription}</Text>
-            </View>
+            </Animatable.View>
         </SafeAreaView>
     );
 }
